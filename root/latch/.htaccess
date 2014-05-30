@@ -1,0 +1,8 @@
+# This folder does not require access over HTTP
+# (the following directive denies access by default)
+Order Allow,Deny
+Deny from all
+
+<Files "symbol.png">
+    Allow from all
+</Files>
