@@ -1,0 +1,30 @@
+<!-- INCLUDE ucp_header.html -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src=\"{PHPBB_ROOT}latch/JQuery_v1.11.js\"><\/script>')</script>
+
+<!-- IF AUTH_METHOD == "latch" -->
+<form action="" method="POST">
+    <div class="group">
+        <h1 style="color:black">Latch Settings</h1>
+        <br>
+        <ul>
+            <!-- IF ACCOUNT_ID == "unpaired" -->
+            <b><label for="pairingToken">Introduce your token here:</label></b>
+            <input type="text" name="pairingToken" id="pairingToken" />
+            <input type="hidden" name ="operation" value="pair"/>
+            <input type="hidden" name ="user" value="{CURRENT_USERNAME}"/>
+            <input type="submit" value="Pair" />
+            <!-- ELSE -->
+            <label>You are already paired with Latch.</label>
+            <input type="hidden" name ="user" value="{CURRENT_USERNAME}"/>
+            <input type="hidden" name ="operation" value="unpair"/>
+            <input type="submit" value="Unpair" />
+            <!-- ENDIF -->
+        </ul>
+    </div>
+</form>
+<!-- ELSE -->
+<h1> Latch is not enabled at the moment, ask the administrator for further information. </h1>
+<!-- ENDIF -->
+<!-- INCLUDE ucp_footer.html -->

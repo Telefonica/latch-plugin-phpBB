@@ -1,0 +1,9 @@
+In order to completely remove Latch from your forum you have to execute this sql sentences on your database.
+
+{PHPBB_DB} is your actual database for phpBB, removing the brackets.
+
+DELETE FROM {PHPBB_DB}.phpbb_config WHERE phpbb_config.config_name = 'application_id';
+DELETE FROM {PHPBB_DB}.phpbb_config WHERE phpbb_config.config_name = 'application_secret';
+DELETE FROM {PHPBB_DB}.phpbb_config WHERE phpbb_config.config_name = 'latch_auth_target';
+
+DROP TABLE {PHPBB_DB}.latch_accounts;
