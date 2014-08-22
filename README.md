@@ -21,7 +21,7 @@
 * Once the administrator has downloaded the module, copy its content in phpBB root folder.
 
 * Next step is to activate Latch module. From control panel, go to **SYSTEM** tab, and then to
- **User Control Panel**. Select from the menu **Latch configuration** and press add module button.
+ **User Control Panel**. Select from the menu **Latch configuration** and press **add module** button.
  
 * After accepting the message, go back to **User Control Panel**, where there will be a table with installed modules. Latch will be the last one.
 
@@ -39,24 +39,35 @@
 
 ##UNINSTALLING THE MODULE IN phpBB
 * To fully uninstall, the steps taken during the installation has to be undone:
-	1. Press delete in the installed list of modules.
+	1. Press **delete** in the installed list of modules.
 	2. State back the previous authentication module.
 	3. Remove the files copied during installation.
 
 ##USE OF LATCH MODULE FOR THE USERS
-###Pairing an user in phpBB
+
 **Latch does not affect in any case or in any way the usual operations with an account. It just allows or denies actions over it, acting as an independent extra layer of security that, once removed or without effect, will have no effect over the accounts, which will remain with their original state.**
 
+###Pairing a user in phpBB
 The user needs the Latch application installed on the phone, and follow these steps:
 
 * **Step 1:** Pairing phpBB account with Latch. go to **User Control Panel**, and click on the new tab **Latch Configuration**. 
 
-* **Step 2:** From the Latch app on the phone, the user has to generate the token, pressing on **“generate pairing code to add service"** at the bottom of the application.
+* **Step 2:** From the Latch app on the phone, the user has to generate the token, pressing on **“Add a new service"** at the bottom of the application, and pressing **"Generate new code"** will take the user to a new screen where the pairing code will be displayed.
 
 * **Step 3:** The user has to type the characters generated on the phone into the text box displayed on the web page. Click on **"Pair"** button.
 
 * **Step 4:** Now the user may lock and unlock the account, preventing any unauthorized access.
  
 
-###Unpairing an user in phpBB
+###Unpairing a user in phpBB
 The user has to log on into his phpBB account, go to **User Control Panel**, and click on the new tab **Latch Configuration**, then click on **Unpair** button. He will receive a notification indicating that the service has been unpaired.      
+
+
+##RESOURCES
+- You can access Latch´s use and installation manuals, together with a list of all available plugins here: [https://latch.elevenpaths.com/www/developers/resources](https://latch.elevenpaths.com/www/developers/resources)
+
+- Further information on de Latch´s API can be found here: [https://latch.elevenpaths.com/www/developers/doc_api](https://latch.elevenpaths.com/www/developers/doc_api)
+
+- For more information about how to use Latch and testing more free features, please refer to the user guide in Spanish and English:
+	1. [English version](https://latch.elevenpaths.com/www/public/documents/howToUseLatchNevele_EN.pdf)
+	1. [Spanish version](https://latch.elevenpaths.com/www/public/documents/howToUseLatchNevele_ES.pdf)
