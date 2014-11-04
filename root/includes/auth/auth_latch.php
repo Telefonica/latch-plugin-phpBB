@@ -1,7 +1,7 @@
 <?php
 
 /*
-  Latch phpBB3 plugin - Integrates Latch into the phpMyAdmin authentication process.
+  Latch phpBB3 plugin - Integrates Latch into the phpBB3 authentication process.
   Copyright (C) 2013 Eleven Paths
 
   This library is free software; you can redistribute it and/or
@@ -50,12 +50,15 @@ function login_latch(&$username, &$password) {
         $login_result = $login($username, $password);
     }
 
-    if ($login_result ['status'] != LOGIN_SUCCESS || isset($_REQUEST['latch'])) {
+    if ($login_result ['status'] != LOGIN_SUCCESS || isset($_POST['latch'])) {
         return $login_result;
     }
 
-    if (isset($_REQUEST['otp']) && isset($_SESSION['token'])) {
-        if ($_REQUEST['otp'] == $_SESSION['token']) {
+    if (isset($_POST['otp']) && isset($_SESSION['token'])) {
+		$server_otp = $_SESSION['token'];
+		unset($_SESSION['token']);
+		
+        if ($_POST['otp'] == $server_otp) {
             return $login_result;
         } else {
             return $login_fail;
@@ -85,16 +88,16 @@ function acp_latch(&$new) {
 
     include_once ($phpbb_root_path . "latch/LatchPersistence.php");
 
-    if (isset($_REQUEST['latch_auth_target']) && ctype_alnum($_REQUEST['latch_auth_target'])) {
-        setAuthTarget($_REQUEST['latch_auth_target']);
+    if (isset($_POST['latch_auth_target']) && ctype_alnum($_POST['latch_auth_target'])) {
+        setAuthTarget($_POST['latch_auth_target']);
     }
 
     $auth_target_latch = $config['latch_auth_target'];
 
-    if (isset($_REQUEST['latch_appId']) && isset($_REQUEST['latch_appSecret'])) {
+    if (isset($_POST['latch_appId']) && isset($_POST['latch_appSecret'])) {
 
-        $appId = $_REQUEST['latch_appId'];
-        $appSecret = $_REQUEST['latch_appSecret'];
+        $appId = $_POST['latch_appId'];
+        $appSecret = $_POST['latch_appSecret'];
 
         if (ctype_alnum($appId) && strlen($appId) == 20 && ctype_alnum($appSecret) && strlen($appSecret) == 40) {
             setApplicationConfig($appId, $appSecret);
@@ -138,13 +141,13 @@ function acp_latch(&$new) {
         <dt><label for = "latch_appId"> Latch - ApplicationID:</label><br />
             <span>Application ID obtained from Latch\'s web. DON\'T change once set. </span>
         </dt>
-        <dd><input type="text" id="latch_appId" name="latch_appId" required pattern="[a-zA-Z0-9]{20}" size=40 value="' . htmlentities($new['application_id']) . '"></dd>
+        <dd><input type="text" id="latch_appId" name="latch_appId" autocomplete="off" required pattern="[a-zA-Z0-9]{20}" size=40 value="' . htmlentities($new['application_id']) . '"></dd>
     </dl>
     <dl>
         <dt><label for = "latch_appSecret"> Latch - ApplicationSecret:</label><br />
             <span>Application Secret obtained from Latch\'s web. DON\'T change once set.</span>
         </dt>
-        <dd><input type="text" id="latch_appSecret" pattern="[a-zA-Z0-9]{40}" required name="latch_appSecret" size=40 value="' . htmlentities($new['application_secret']) . '"></dd>
+        <dd><input type="text" id="latch_appSecret" autocomplete="off" pattern="[a-zA-Z0-9]{40}" required name="latch_appSecret" size=40 value="' . htmlentities($new['application_secret']) . '"></dd>
     </dl>
     ';
 
