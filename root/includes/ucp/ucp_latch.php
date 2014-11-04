@@ -50,14 +50,14 @@ class ucp_latch {
     }
 
     public function manage_pairing() {
-        if (isset($_REQUEST ['operation']) && isset($_REQUEST['user'])) {
-            if (ctype_alnum($_REQUEST['user'])) {
-                if (isset($_REQUEST ['pairingToken'])) {
-                    if (ctype_alnum($_REQUEST['pairingToken'])) {
-                        pairLatchAccount($_REQUEST ['pairingToken'], $_REQUEST['user']);
+        if (isset($_POST ['operation']) && isset($_POST['user'])) {
+            if (ctype_alnum($_POST['user'])) {
+                if (isset($_POST ['pairingToken'])) {
+                    if (ctype_alnum($_POST['pairingToken'])) {
+                        pairLatchAccount($_POST ['pairingToken'], $_POST['user']);
                     }
-                } else if ($_REQUEST ['operation'] == "unpair") {
-                    unpairLatchAccount($_REQUEST['user']);
+                } else if ($_POST ['operation'] == "unpair") {
+                    unpairLatchAccount($_POST['user']);
                 }
             }
         }

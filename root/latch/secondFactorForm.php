@@ -1,5 +1,4 @@
 <?php
-
 /*
   Latch phpBB3 plugin - Integrates Latch into the phpBB3 authentication process.
   Copyright (C) 2013 Eleven Paths
@@ -80,16 +79,16 @@ if (!defined('IN_PHPBB')) {
                 <h3>One-time password</h3>
             </div>
             <div class = "twoFactorForm">
-                <form method = "POST" action = "<?php echo (isset($_POST['credential']) ? $_POST['redirect'] : $phpbb_root_path . "ucp.php?&mode=login"); ?>">
+                <form method = "POST" action = "<?php echo (isset($_POST['credential']) ? htmlentities($_POST['redirect']) : $phpbb_root_path . "ucp.php?&mode=login"); ?>">
                     <label>Insert your one-time password:</label>
                     <input type = "text" name = "otp" id = "latchTwoFactor" />
                     <input type = "hidden" value = "<?php echo htmlentities($username) ?>" name = "username" />
-                    <input type = "hidden" value = "<?php echo $_POST['sid'] ?>" name = "sid"/>
-                    <input type = "hidden" value = "<?php echo $_POST['redirect'] ?>" name = "redirect"/>
+                    <input type = "hidden" value = "<?php echo htmlentities($_POST['sid']) ?>" name = "sid"/>
+                    <input type = "hidden" value = "<?php echo htmlentities($_POST['redirect']) ?>" name = "redirect"/>
                     <?php if (isset($_POST['credential'])) {
                         ?>
-                        <input type = "hidden" value = "<?php echo $_POST['credential'] ?>" name = "credential"/>
-                        <input type = "hidden" value = "<?php echo htmlentities($password) ?>" name = "password_<?php echo $_POST['credential'] ?>"/>
+                        <input type = "hidden" value = "<?php echo htmlentities($_POST['credential']) ?>" name = "credential"/>
+                        <input type = "hidden" value = "<?php echo htmlentities($password) ?>" name = "password_<?php echo htmlentities($_POST['credential']) ?>"/>
                     <?php } else {
                         ?>
                         <input type = "hidden" value = "<?php echo htmlentities($password) ?>" name = "password"/>
